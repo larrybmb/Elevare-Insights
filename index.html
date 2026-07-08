@@ -1,288 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elevare Insights | Strategic Intelligence for EV Markets</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elevare Insights | Behavioural Intelligence Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0D1F2D;
+    --navy-light:#12293C;
+    --navy-mid:#16324A;
+    --ink:#16232A;
+    --teal:#00C2B2;
+    --teal-deep:#0E8F82;
+    --orange:#E8450A;
+    --paper:#FFFFFF;
+    --mist:#F4F7F8;
+    --line:#E2E8EA;
+    --muted:#5B6670;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  a{color:inherit;}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #1a2332;
-            background: #f8f9fa;
-        }
+  /* ---------- Nav ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px;
+    background:rgba(13,31,45,0.0);
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+  }
+  nav.scrolled{
+    background:rgba(13,31,45,0.92);
+    backdrop-filter:blur(10px);
+    padding:14px 32px;
+    box-shadow:0 1px 0 rgba(255,255,255,0.06);
+  }
+  .navmark svg{height:24px; width:auto; display:block;}
+  .hero-lockup{height:150px; width:auto; display:block;}
+  @media (max-width:900px){ .hero-lockup{height:120px;} }
+  .navlinks{display:flex; gap:34px; font-size:14.5px; font-weight:500;}
+  .navlinks a{color:rgba(255,255,255,0.75); text-decoration:none; transition:color .2s;}
+  .navlinks a:hover{color:#fff;}
+  .navcta{
+    font-size:13.5px; font-weight:600; color:#fff; text-decoration:none;
+    border:1px solid rgba(255,255,255,0.35); border-radius:100px; padding:9px 20px;
+    transition:all .2s;
+  }
+  .navcta:hover{background:#fff; color:var(--navy); border-color:#fff;}
+  @media (max-width:860px){ .navlinks{display:none;} }
 
-        header {
-            background: linear-gradient(135deg, #1a9b8e 0%, #148c80 100%);
-            padding: 2.5rem 0 0;
-            box-shadow: none;
-        }
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(160deg, var(--navy) 0%, var(--navy-light) 55%, #0F2536 100%);
+    color:#fff;
+    padding:170px 0 100px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:2.6px;
+    text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:20px;
+  }
+  .eyebrow.on-white{color:var(--teal-deep);}
+  h1{
+    font-family:'Raleway',sans-serif; font-weight:200; font-size:clamp(34px,4.6vw,58px);
+    line-height:1.12; letter-spacing:-0.5px; margin-bottom:26px;
+  }
+  h1 b{font-weight:400; color:var(--teal);}
+  .hero p.lede{
+    font-size:18px; line-height:1.7; color:rgba(255,255,255,0.82); max-width:520px; margin-bottom:34px;
+  }
+  .btnrow{display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--teal); color:var(--navy); font-weight:600; font-size:15px;
+    padding:14px 26px; border-radius:100px; text-decoration:none; display:inline-block;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,194,178,0.25);}
+  .btn-ghost{
+    color:rgba(255,255,255,0.85); font-weight:500; font-size:15px; text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,0.3); padding-bottom:2px;
+  }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+  /* node diagram */
+  .diagram-wrap{position:relative; display:flex; align-items:center; justify-content:center;}
+  #nodeSvg{width:100%; max-width:480px; height:auto; overflow:visible;}
+  .node-line{stroke:rgba(255,255,255,0.16); stroke-width:1; fill:none;}
+  .node-line.tier1{stroke:rgba(0,194,178,0.45);}
+  .hub-core{fill:var(--teal);}
+  .hub-ring{fill:none; stroke:rgba(0,194,178,0.35); stroke-width:1;}
+  .sat{fill:#dfe9ea;}
+  .sat.t1{fill:var(--teal);}
+  .sat.t2{fill:#9fd8d2;}
+  .sat.t3{fill:#5f8b8a;}
+  .diagram-caption{
+    position:absolute; bottom:-6px; left:50%; transform:translateX(-50%);
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1.6px;
+    color:rgba(255,255,255,0.45); text-transform:uppercase; white-space:nowrap;
+  }
 
-        .logo-section {
-            text-align: center;
-            padding: 2rem 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
+  @media (prefers-reduced-motion:no-preference){
+    .anim-line{stroke-dasharray:220; stroke-dashoffset:220; animation:drawline 1.1s ease forwards;}
+    .anim-node{opacity:0; transform:scale(.4); transform-origin:center; animation:popnode .5s ease forwards;}
+    .hub-pulse{animation:pulse 2.8s ease-in-out infinite;}
+  }
+  @keyframes drawline{to{stroke-dashoffset:0;}}
+  @keyframes popnode{to{opacity:1; transform:scale(1);}}
+  @keyframes pulse{0%,100%{opacity:.55;} 50%{opacity:1;}}
 
-        .logo-section img {
-            max-width: 400px;
-            width: 100%;
-            height: auto;
-            opacity: 0.98;
-        }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .diagram-wrap{margin-top:20px; max-width:340px;}
+  }
 
-        .tagline {
-            text-align: center;
-            font-size: 1.3rem;
-            color: #1a9b8e;
-            font-weight: 500;
-            margin-top: 0.5rem;
-        }
+  /* ---------- Sections ---------- */
+  section{padding:110px 0;}
+  .section-mist{background:var(--mist);}
+  h2{
+    font-family:'Raleway',sans-serif; font-weight:300; font-size:clamp(28px,3.2vw,40px);
+    color:var(--navy-mid); line-height:1.2; margin-bottom:22px; letter-spacing:-0.3px;
+  }
+  .lede-block{max-width:680px; font-size:17px; color:var(--ink); margin-bottom:8px;}
+  .two-col{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
+  @media (max-width:860px){ .two-col{grid-template-columns:1fr; gap:36px;} }
 
-        .hero {
-            background: linear-gradient(135deg, #1a9b8e 0%, #148c80 100%);
-            color: white;
-            padding: 1.5rem 0 3rem;
-            text-align: center;
-        }
+  .stack{margin-top:36px; display:flex; flex-direction:column; gap:0;}
+  .stack-item{
+    display:grid; grid-template-columns:44px 1fr; gap:20px;
+    padding:26px 0; border-top:1px solid var(--line);
+  }
+  .stack-item:last-child{border-bottom:1px solid var(--line);}
+  .stack-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--teal-deep); padding-top:3px;}
+  .stack-item h3{font-size:17px; font-weight:600; margin-bottom:6px; color:var(--navy-mid);}
+  .stack-item p{font-size:15px; color:var(--muted); max-width:560px;}
 
-        .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
+  /* Vertical cluster cards */
+  .clusters{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px;}
+  @media (max-width:860px){ .clusters{grid-template-columns:1fr;} }
+  .cluster-card{
+    background:var(--paper); border:1px solid var(--line); border-top:2px solid var(--teal);
+    padding:36px 30px 32px;
+  }
+  .cluster-card .count{
+    font-family:'IBM Plex Mono',monospace; font-size:46px; color:var(--teal-deep); font-weight:500;
+    display:block; margin-bottom:16px; letter-spacing:-1px;
+  }
+  .cluster-card h3{font-size:16.5px; font-weight:600; color:var(--navy-mid); letter-spacing:-0.1px;}
 
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.95;
-            line-height: 1.6;
-        }
+  
+  /* CTA band */
+  .cta-band{
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color:#fff; text-align:center; padding:110px 0;
+  }
+  .cta-band h2{color:#fff;}
+  .cta-band p{color:rgba(255,255,255,0.78); font-size:17px; max-width:560px; margin:0 auto 34px;}
+  .cta-email{
+    font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--navy);
+    background:var(--teal); padding:15px 30px; border-radius:100px; text-decoration:none;
+    display:inline-block; font-weight:500; transition:transform .2s;
+  }
+  .cta-email:hover{transform:translateY(-2px);}
 
-        section {
-            padding: 4rem 0;
-        }
+  /* Footer */
+  footer{background:var(--navy); color:rgba(255,255,255,0.55); padding:44px 0 36px;}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .foot-mark{font-family:'Raleway',sans-serif; font-weight:300; font-size:18px; color:rgba(255,255,255,0.8);}
+  .foot-legal{font-size:12.5px; color:rgba(255,255,255,0.4); line-height:1.8;}
+  @media (max-width:700px){ .foot-row{flex-direction:column; align-items:flex-start;} }
 
-        .section-white {
-            background: white;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1a2332;
-            text-align: center;
-        }
-
-        .content-block {
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
-            border-left: 4px solid #1a9b8e;
-        }
-
-        .feature-card h3 {
-            color: #1a9b8e;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .community-note {
-            background: #f0f8f7;
-            border-left: 4px solid #1a9b8e;
-            padding: 1.5rem;
-            margin: 2rem auto;
-            max-width: 800px;
-            border-radius: 4px;
-        }
-
-        .community-note p {
-            font-size: 0.95rem;
-            color: #1a2332;
-            line-height: 1.6;
-        }
-
-        .community-link {
-            display: inline-block;
-            margin-top: 1rem;
-            color: #1a9b8e;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .community-link:hover {
-            color: #148c80;
-        }
-
-        .cta {
-            background: linear-gradient(135deg, #1a9b8e 0%, #148c80 100%);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .cta h2 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .contact-email {
-            font-size: 1.3rem;
-            color: white;
-            text-decoration: none;
-            padding: 1rem 2rem;
-            background: rgba(255,255,255,0.15);
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 1rem;
-            transition: background 0.3s;
-        }
-
-        .contact-email:hover {
-            background: rgba(255,255,255,0.25);
-        }
-
-        footer {
-            background: #1a2332;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        footer p {
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            h2 {
-                font-size: 1.6rem;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  ::selection{background:var(--teal); color:var(--navy);}
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo-section">
-                <img src="/images/Elevare_1_stack_centered_dark_bg.png" alt="Elevare Insights Logo">
-            </div>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Strategic Intelligence for Chinese EV Manufacturers</h1>
-            <p>We transform owner communities into powerful intelligence networks, delivering actionable insights that help Chinese automotive brands succeed in English-speaking markets.</p>
-        </div>
-    </section>
+<nav id="mainNav">
+  <div class="navmark" aria-label="Elevare Insights">
+    <svg viewBox="0 0 62.0 57.0" xmlns="http://www.w3.org/2000/svg">
+      <path d="M299 -10Q244 -10 197.0 11.5Q150 33 115.5 70.5Q81 108 61.5 157.5Q42 207 42 262Q42 336 75.0 396.0Q108 456 166.0 492.5Q224 529 296 529Q370 529 427.0 492.0Q484 455 517.5 394.5Q551 334 551 262Q551 256 551.0 250.0Q551 244 550 240H94Q98 181 127.0 133.0Q156 85 201.5 57.5Q247 30 301 30Q355 30 403.0 58.0Q451 86 470 130L514 118Q499 81 466.5 52.0Q434 23 390.5 6.5Q347 -10 299 -10ZM92 279H503Q499 340 471.0 387.0Q443 434 397.5 461.0Q352 488 297 488Q242 488 197.0 461.0Q152 434 124.0 387.0Q96 340 92 279Z" fill="#ffffff" transform="translate(0,46.8) scale(0.06,-0.06)"/>
+      <path d="M78 0V520H128V0Z" fill="#ffffff" transform="translate(34.98,46.8) scale(0.06,-0.06)"/>
+      <path d="M78 638V730H128V638Z" fill="#E8450A" transform="translate(34.98,46.8) scale(0.06,-0.06)"/>
+      <path d="M67 0V85H111V0Z" fill="#00C2B2" transform="translate(47.4,46.8) scale(0.06,-0.06)"/>
+    </svg>
+  </div>
+  <div class="navlinks">
+    <a href="#method">How it works</a>
+    <a href="#verticals">Where it applies</a>
+    <a href="#bridge">Cross-market</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="navcta" href="#contact">Talk to us</a>
+</nav>
 
-    <section class="section-white">
-        <div class="container">
-            <h2>What We Do</h2>
-            <div class="content-block">
-                <p>Elevare Insights specialises in community-driven market intelligence for Chinese electric vehicle manufacturers entering English-speaking markets. By building and managing authentic owner communities, we gather real-time feedback, identify product and service gaps, and provide strategic recommendations that inform product development, marketing strategies, and customer experience improvements.</p>
-                
-                <p>Our seven-layer ecosystem model combines community management with automated intelligence gathering, analysis, and systematic data synthesis to deliver insights that matter—from identifying £1M+ revenue risks to coordinating direct feedback with engineering teams in China.</p>
-            </div>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <svg class="hero-lockup" viewBox="0 0 196.0 208.0" xmlns="http://www.w3.org/2000/svg" aria-label="Elevare Insights 智见高策">
+        <path d="M299 -10Q244 -10 197.0 11.5Q150 33 115.5 70.5Q81 108 61.5 157.5Q42 207 42 262Q42 336 75.0 396.0Q108 456 166.0 492.5Q224 529 296 529Q370 529 427.0 492.0Q484 455 517.5 394.5Q551 334 551 262Q551 256 551.0 250.0Q551 244 550 240H94Q98 181 127.0 133.0Q156 85 201.5 57.5Q247 30 301 30Q355 30 403.0 58.0Q451 86 470 130L514 118Q499 81 466.5 52.0Q434 23 390.5 6.5Q347 -10 299 -10ZM92 279H503Q499 340 471.0 387.0Q443 434 397.5 461.0Q352 488 297 488Q242 488 197.0 461.0Q152 434 124.0 387.0Q96 340 92 279Z" fill="#ffffff" transform="translate(0,78) scale(0.092,-0.092)"/>
+        <path d="M78 0V520H128V0Z" fill="#ffffff" transform="translate(53.636,78) scale(0.092,-0.092)"/>
+        <path d="M78 638V730H128V638Z" fill="#E8450A" transform="translate(53.636,78) scale(0.092,-0.092)"/>
+        <path d="M67 0V85H111V0Z" fill="#00C2B2" transform="translate(72.68,78) scale(0.092,-0.092)"/>
+        <path d="M299 -10Q244 -10 197.0 11.5Q150 33 115.5 70.5Q81 108 61.5 157.5Q42 207 42 262Q42 336 75.0 396.0Q108 456 166.0 492.5Q224 529 296 529Q370 529 427.0 492.0Q484 455 517.5 394.5Q551 334 551 262Q551 256 551.0 250.0Q551 244 550 240H94Q98 181 127.0 133.0Q156 85 201.5 57.5Q247 30 301 30Q355 30 403.0 58.0Q451 86 470 130L514 118Q499 81 466.5 52.0Q434 23 390.5 6.5Q347 -10 299 -10ZM92 279H503Q499 340 471.0 387.0Q443 434 397.5 461.0Q352 488 297 488Q242 488 197.0 461.0Q152 434 124.0 387.0Q96 340 92 279Z" fill="rgba(255,255,255,0.42)" transform="translate(2,136) scale(0.034,-0.034)"/>
+        <path d="M82 730H133V103Q133 67 148.0 53.5Q163 40 187 40Q203 40 220.0 43.0Q237 46 250 51L260 10Q243 4 218.0 -1.0Q193 -6 175 -6Q133 -6 107.5 19.5Q82 45 82 88Z" fill="rgba(255,255,255,0.42)" transform="translate(30.822,136) scale(0.034,-0.034)"/>
+        <path d="M299 -10Q244 -10 197.0 11.5Q150 33 115.5 70.5Q81 108 61.5 157.5Q42 207 42 262Q42 336 75.0 396.0Q108 456 166.0 492.5Q224 529 296 529Q370 529 427.0 492.0Q484 455 517.5 394.5Q551 334 551 262Q551 256 551.0 250.0Q551 244 550 240H94Q98 181 127.0 133.0Q156 85 201.5 57.5Q247 30 301 30Q355 30 403.0 58.0Q451 86 470 130L514 118Q499 81 466.5 52.0Q434 23 390.5 6.5Q347 -10 299 -10ZM92 279H503Q499 340 471.0 387.0Q443 434 397.5 461.0Q352 488 297 488Q242 488 197.0 461.0Q152 434 124.0 387.0Q96 340 92 279Z" fill="rgba(255,255,255,0.42)" transform="translate(48.628,136) scale(0.034,-0.034)"/>
+        <path d="M238 0 21 520H74L265 53L457 520H507L290 0Z" fill="rgba(255,255,255,0.42)" transform="translate(77.45,136) scale(0.034,-0.034)"/>
+        <path d="M35 150Q35 197 63.0 231.5Q91 266 140.0 285.5Q189 305 253 305Q293 305 336.0 298.0Q379 291 413 279V328Q413 400 371.5 443.0Q330 486 257 486Q218 486 176.0 470.0Q134 454 90 424L69 460Q120 494 167.5 511.5Q215 529 262 529Q355 529 409.0 474.0Q463 419 463 324V66Q463 54 468.5 48.0Q474 42 485 41V0Q476 -1 470.0 -1.0Q464 -1 460 -1Q441 2 430.5 15.0Q420 28 419 44V85Q383 40 326.5 15.0Q270 -10 208 -10Q159 -10 119.5 11.0Q80 32 57.5 68.5Q35 105 35 150ZM393 107Q403 120 408.0 132.0Q413 144 413 154V240Q377 254 338.0 261.0Q299 268 258 268Q180 268 131.5 237.0Q83 206 83 153Q83 120 100.0 92.0Q117 64 147.5 47.0Q178 30 218 30Q274 30 321.5 51.5Q369 73 393 107Z" fill="rgba(255,255,255,0.42)" transform="translate(104.402,136) scale(0.034,-0.034)"/>
+        <path d="M324 475Q254 473 201.5 433.5Q149 394 128 325V0H78V520H126V392Q153 447 198.0 481.5Q243 516 293 521Q303 522 311.0 522.0Q319 522 324 522Z" fill="rgba(255,255,255,0.42)" transform="translate(131.66,136) scale(0.034,-0.034)"/>
+        <path d="M299 -10Q244 -10 197.0 11.5Q150 33 115.5 70.5Q81 108 61.5 157.5Q42 207 42 262Q42 336 75.0 396.0Q108 456 166.0 492.5Q224 529 296 529Q370 529 427.0 492.0Q484 455 517.5 394.5Q551 334 551 262Q551 256 551.0 250.0Q551 244 550 240H94Q98 181 127.0 133.0Q156 85 201.5 57.5Q247 30 301 30Q355 30 403.0 58.0Q451 86 470 130L514 118Q499 81 466.5 52.0Q434 23 390.5 6.5Q347 -10 299 -10ZM92 279H503Q499 340 471.0 387.0Q443 434 397.5 461.0Q352 488 297 488Q242 488 197.0 461.0Q152 434 124.0 387.0Q96 340 92 279Z" fill="rgba(255,255,255,0.42)" transform="translate(152.254,136) scale(0.034,-0.034)"/>
+        <path d="M182 838C163 749 128 664 88 610L102 599C138 625 171 661 199 704H274C274 662 272 623 267 587H49L57 558H263C243 460 192 382 47 318L60 302C202 350 271 413 306 492C363 458 429 404 455 360C524 330 543 464 314 512C319 527 324 542 327 558H518C532 558 541 563 544 573C513 603 462 643 462 643L417 587H332C338 623 340 662 342 704H498C510 704 520 709 522 720C492 750 441 789 441 789L397 733H217C227 751 236 769 244 789C264 788 276 797 280 808ZM716 136V13H293V136ZM716 166H293V285H716ZM570 737V363H581C608 363 634 378 634 384V441H839V377H848C870 377 902 391 902 398V695C923 699 939 707 946 715L865 777L829 737H639L570 768ZM839 470H634V708H839ZM228 314V-77H238C266 -77 293 -62 293 -55V-17H716V-74H726C748 -74 780 -59 781 -53V274C799 278 814 286 820 293L742 353L707 314H299L228 346Z" fill="rgba(0,194,178,0.55)" transform="translate(2,190) scale(0.038,-0.038)"/>
+        <path d="M634 395 539 406V21C539 -32 558 -48 642 -48H759C928 -48 962 -36 962 -5C962 8 957 17 934 24L932 199H918C905 123 893 52 885 32C881 19 878 15 863 14C849 13 812 12 760 12H651C609 12 603 18 603 35V371C623 373 632 383 634 395ZM568 663 465 674C463 375 469 122 49 -60L60 -77C525 91 524 350 533 638C556 640 566 650 568 663ZM194 815V236H205C239 236 260 252 260 257V756H752V250H762C794 250 820 266 820 271V748C841 750 852 757 859 764L783 824L748 782H272Z" fill="rgba(0,194,178,0.55)" transform="translate(48.0,190) scale(0.038,-0.038)"/>
+        <path d="M856 782 805 719H544C575 744 557 829 400 849L390 840C433 814 485 762 499 719H55L64 689H924C939 689 948 694 951 705C914 738 856 782 856 782ZM617 100H386V218H617ZM386 30V70H617V23H626C648 23 678 38 679 45V209C697 212 712 220 718 227L642 284L608 247H390L324 278V11H333C358 11 386 24 386 30ZM675 466H334V583H675ZM334 412V437H675V398H685C706 398 739 412 740 418V571C759 575 776 583 783 590L701 652L665 612H339L270 644V391H280C306 391 334 407 334 412ZM189 -56V326H829V18C829 4 824 -2 806 -2C784 -2 688 4 688 4V-10C732 -15 756 -24 771 -34C784 -44 789 -61 792 -80C882 -71 894 -40 894 11V314C914 317 931 325 937 332L852 396L819 355H197L125 388V-78H136C163 -78 189 -63 189 -56Z" fill="rgba(0,194,178,0.55)" transform="translate(94.0,190) scale(0.038,-0.038)"/>
+        <path d="M589 839C548 739 483 647 422 593L434 580L465 599V520H77L86 492H465V399H240L169 431V145H178C205 145 234 160 234 165V370H465V317C381 164 207 31 36 -41L43 -58C205 -5 362 91 465 197V-79H478C502 -79 530 -64 530 -55V257C606 110 747 6 904 -55C914 -23 934 -3 963 0L964 11C788 58 606 159 530 302V370H772V238C772 226 768 221 752 221C733 221 652 226 652 226V210C690 206 711 198 723 189C735 181 739 166 742 149C826 157 837 186 837 233V358C857 361 874 369 880 376L795 438L762 399H530V492H906C920 492 930 497 932 507C899 537 847 578 847 578L802 520H530V578C556 582 564 593 567 607L488 615C520 639 551 668 580 700H649C675 669 700 625 706 588C759 549 810 639 698 700H939C953 700 963 705 965 716C933 747 882 786 882 786L836 730H604C618 747 630 766 642 785C663 781 677 790 681 800ZM203 839C163 719 97 611 30 545L43 533C102 572 160 630 207 700H256C276 670 296 627 298 591C347 549 401 635 297 700H494C507 700 517 705 519 716C491 745 444 782 444 782L403 730H227C237 748 248 766 257 785C279 783 291 791 296 802Z" fill="rgba(0,194,178,0.55)" transform="translate(140.0,190) scale(0.038,-0.038)"/>
+      </svg>
 
-            <div class="features">
-                <div class="feature-card">
-                    <h3>Community Intelligence</h3>
-                    <p>We build and manage authentic owner communities that become trusted channels for gathering honest feedback, identifying pain points, and understanding customer needs in real-time.</p>
-                </div>
+      <div style="margin-top:30px;"></div>
+      <h1>Market intelligence<br>that <b>moves first.</b></h1>
+      <p class="lede">The automotive landscape has changed. Conventional intelligence has watched it happen — and no longer reflects reality. So, we built a new category, using proprietary intelligence infrastructure that keeps pace with change — one that uses recognised psychological frameworks to surface demand signals, risk patterns, regulatory shifts and revenue threats in real time, before they impact you.</p>
+      <div class="btnrow">
+        <a class="btn-primary" href="#contact">Talk to us</a>
+        <a class="btn-ghost" href="#method">See how it works ↓</a>
+      </div>
+    </div>
 
-                <div class="feature-card">
-                    <h3>Data-Driven Insights</h3>
-                    <p>Our automated intelligence infrastructure processes community discussions, owner feedback sessions, and market signals to deliver actionable strategic recommendations backed by data.</p>
-                </div>
+    <div class="diagram-wrap">
+      <svg id="nodeSvg" viewBox="0 0 480 480" role="img" aria-label="Diagram of one community connected to twelve stakeholder outputs across three tiers">
+        <g id="linesGroup" stroke-linecap="round"></g>
+        <circle class="hub-ring" cx="240" cy="240" r="34"/>
+        <circle class="hub-core hub-pulse" cx="240" cy="240" r="15"/>
+        <g id="nodesGroup"></g>
+      </svg>
+    </div>
+  </div>
+</header>
 
-                <div class="feature-card">
-                    <h3>Dealer Intelligence</h3>
-                    <p>We facilitate referrals between owners and dealers while gathering critical insights on dealer performance, customer experience touchpoints, and local market dynamics to inform OEM dealer network strategy.</p>
-                </div>
+<section style="padding:70px 0 20px;">
+  <div class="wrap">
+    <p class="lede-block" style="font-size:19px; max-width:820px;">Elevare Insights builds and operates community infrastructure for manufacturers entering new markets — independently of the brand itself, which is exactly why what it reveals is real. Individually, what people say and do inside a community looks incidental. Read as a pattern, it's the kind of signal that should already be informing capital decisions, not just marketing ones.</p>
+    <p class="lede-block" style="font-size:16px; max-width:820px; color:var(--muted); margin-top:14px;">Proven in automotive, where it reached near-census coverage of a market segment within months of a brand's launch — surfacing revenue risk months before it reached the balance sheet.</p>
+  </div>
+</section>
 
-                <div class="feature-card">
-                    <h3>Cross-Cultural Bridge</h3>
-                    <p>We translate not just language, but cultural context—helping Chinese manufacturers understand Western customer expectations and navigate English-speaking markets effectively.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="method">
+  <div class="wrap two-col">
+    <div>
+      <h2>Behavioural science,<br>not a survey.</h2>
+    </div>
+    <div>
+      <p class="lede-block">We don't ask what people would say. We read what thousands of real decisions already show — continuously, not on a research cycle — built on recognised behavioural science most intelligence providers don't use, and infrastructure most of them don't have.</p>
+    </div>
+  </div>
+</section>
 
-    <section>
-        <div class="container">
-            <h2>Our Communities</h2>
-            <div class="content-block">
-                <p>Each Elevare Insights community operates independently, building trust with owners through authentic engagement whilst gathering intelligence that informs manufacturer strategy. Our communities are GDPR-compliant and operate transparently with clear privacy policies.</p>
-                
-                <div class="community-note">
-                    <p><strong>Note:</strong> Each community operates independently with its own privacy policy and data handling practices. Community members maintain control of their data through transparent policies available at each community website.</p>
-                   </div>
+<section id="verticals" class="section-mist">
+  <div class="wrap">
+    <h2>We work across sectors,<br>providing services for:</h2>
 
-                <p style="margin-top: 2rem;"><strong>Featured Community:</strong></p>
-                <p>XPENG Owners UK</a> - Our flagship community representing 60-80% of UK XPENG owners, delivering strategic intelligence directly to XPENG China and UK leadership teams.</p>
-            </div>
-        </div>
-    </section>
+    <div class="clusters">
+      <div class="cluster-card">
+        <span class="count">02</span>
+        <h3>Community &amp; Market</h3>
+      </div>
+      <div class="cluster-card">
+        <span class="count">04</span>
+        <h3>Commercial &amp; Strategic</h3>
+      </div>
+      <div class="cluster-card">
+        <span class="count">06</span>
+        <h3>Regulatory &amp; Financial</h3>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="cta">
-        <div class="container">
-            <h2>Ready to Transform Owner Feedback Into Strategic Advantage?</h2>
-            <p style="margin-bottom: 2rem;">Contact us to learn how community-driven intelligence can accelerate your success in English-speaking markets.</p>
-            <a href="mailto:hello@elevare-insights.com" class="contact-email">hello@elevare-insights.com</a>
-        </div>
-    </section>
+<section id="bridge">
+  <div class="wrap two-col">
+    <div>
+      <h2>Context, not just language.</h2>
+    </div>
+    <div>
+      <p class="lede-block">Entering an unfamiliar market means navigating more than translation — different buyer psychology, different regulatory expectations, different reasons for hesitation. We translate context as much as language: what a market actually expects, needs, and means — not just what it says.</p>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Elevare Insights Ltd. ICO Registration: ZC012981</p>
-            <p style="margin-top: 0.5rem;">Strategic intelligence services for the global automotive industry.</p>
-        </div>
-    </footer>
+<section class="cta-band" id="contact">
+  <div class="wrap">
+    <h2>Ready to see what your market already reveals?</h2>
+    <p>Tell us the brand, the market, and the vertical — we'll show you what the infrastructure looks like for it.</p>
+    <a class="cta-email" href="mailto:hello@elevare-insights.com">hello@elevare-insights.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div class="foot-mark">ei. elevare</div>
+      <div class="foot-legal">
+        © 2026 Elevare Insights Ltd · Registered in England and Wales, No. 16780173 · ICO ZC012981<br>
+        71-75 Shelton Street, Covent Garden, London, WC2H 9JQ
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  (function(){
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const linesGroup = document.getElementById('linesGroup');
+    const nodesGroup = document.getElementById('nodesGroup');
+    const cx = 240, cy = 240;
+    const tiers = [
+      { count: 2, radius: 78,  satClass: 'sat t1', lineClass: 'node-line tier1', nodeR: 6.5 },
+      { count: 4, radius: 148, satClass: 'sat t2', lineClass: 'node-line', nodeR: 5.5 },
+      { count: 6, radius: 218, satClass: 'sat t3', lineClass: 'node-line', nodeR: 4.5 }
+    ];
+    let delay = 0.15;
+    tiers.forEach((tier, ti) => {
+      const angleOffset = ti * 18;
+      for (let i = 0; i < tier.count; i++) {
+        const angle = (Math.PI * 2 * i / tier.count) + (angleOffset * Math.PI/180) - Math.PI/2;
+        const x = cx + tier.radius * Math.cos(angle);
+        const y = cy + tier.radius * Math.sin(angle);
+
+        const line = document.createElementNS(svgNS, 'line');
+        line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+        line.setAttribute('x2', x); line.setAttribute('y2', y);
+        line.setAttribute('class', tier.lineClass + ' anim-line');
+        line.style.animationDelay = delay + 's';
+        linesGroup.appendChild(line);
+
+        const node = document.createElementNS(svgNS, 'circle');
+        node.setAttribute('cx', x); node.setAttribute('cy', y);
+        node.setAttribute('r', tier.nodeR);
+        node.setAttribute('class', tier.satClass + ' anim-node');
+        node.style.animationDelay = (delay + 0.25) + 's';
+        nodesGroup.appendChild(node);
+
+        delay += 0.045;
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
