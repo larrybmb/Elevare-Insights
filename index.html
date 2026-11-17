@@ -165,6 +165,18 @@
   .cluster-card .card-copy{font-size:15px; color:var(--muted); margin-top:10px;}
 
   
+  .cluster-card{display:flex; flex-direction:column;}
+  .cluster-card .card-q{font-family:'Raleway',sans-serif; font-size:19px; font-weight:300; color:var(--teal-deep); line-height:1.35; margin-bottom:18px; display:block;}
+  .card-link{color:var(--teal-deep); font-weight:600; font-size:14.5px; text-decoration:none; margin-top:auto; padding-top:18px;}
+  .card-link:hover{text-decoration:underline;}
+  .stat-band{background:var(--navy-light); color:#fff; padding:56px 0; border-top:1px solid rgba(255,255,255,0.06);}
+  .stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:40px;}
+  .stat-num{font-family:'Raleway',sans-serif; font-weight:200; font-size:clamp(40px,4.4vw,56px); color:var(--teal); line-height:1; display:block; margin-bottom:12px;}
+  .stat p{font-size:15px; color:rgba(255,255,255,0.75); max-width:320px;}
+  .cta-band p.trust{font-size:13px; color:rgba(255,255,255,0.5); margin:28px auto 0; max-width:520px;}
+  @media (max-width:860px){ .stat-grid{grid-template-columns:1fr; gap:28px;} }
+  @media (max-width:700px){ section{padding:64px 0;} .cta-band{padding:72px 0;} .hero{padding:130px 0 64px;} .stat-band{padding:44px 0;} }
+
   /* CTA band */
   .cta-band{
     background:linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
@@ -205,7 +217,7 @@
     <a href="#gap">The gap</a>
     <a href="#method">How it works</a>
     <a href="#verticals">Who it's for</a>
-    <a href="#proof">Proof</a>
+    <a href="#research">Research</a>
   </div>
   <a class="navcta" href="#contact">Request a sample</a>
 </nav>
@@ -233,13 +245,13 @@
 
       <div style="margin-top:30px;"></div>
       <h1>Market intelligence<br>that <b>moves first.</b></h1>
-      <p class="lede">The automotive landscape has changed. Conventional intelligence has watched it happen — and no longer reflects reality. Cars are sold through partners, most are registered to fleets and lessors, and problems surface only once they've cost money. We give you a direct view of the driver: where they are, what's holding them back, and what's going wrong — before it reaches your numbers.</p>
+      <p class="lede">The automotive landscape has changed. Conventional intelligence has watched it happen — and no longer reflects reality.</p>
+      <p class="lede" style="margin-top:-18px;">Cars are sold through partners and registered to lessors. Problems surface only once they've cost money. We give you a direct view of the driver — before it reaches your numbers.</p>
       <div class="btnrow">
         <a class="btn-primary" href="#contact">Request a sample brief</a>
         <a class="btn-ghost" href="#gap">Why conventional data falls short ↓</a>
       </div>
     </div>
-
     <div class="diagram-wrap">
       <svg id="nodeSvg" viewBox="0 0 480 480" role="img" aria-label="Diagram of one community connected to twelve nodes">
         <g id="linesGroup" stroke-linecap="round"></g>
@@ -250,6 +262,14 @@
     </div>
   </div>
 </header>
+
+<section class="stat-band">
+  <div class="wrap stat-grid">
+    <div class="stat"><span class="stat-num">60–80%</span><p>of a new brand's UK owners joined our independent community within months of launch.</p></div>
+    <div class="stat"><span class="stat-num">6 in 10</span><p>new UK cars are registered to fleets. Registration data shows the paperwork, not the driver.</p></div>
+    <div class="stat"><span class="stat-num">Weeks</span><p>earlier: owners tell each other about a problem long before it reaches warranty or complaints.</p></div>
+  </div>
+</section>
 
 <section id="gap">
   <div class="wrap two-col">
@@ -277,6 +297,7 @@
     <div>
       <p class="lede-block">We build and run independent owner communities in the markets brands are entering. Owners speak candidly because it isn't the brand's channel — that's why the signal is honest.</p>
       <p class="lede-block" style="margin-top:14px;">We read thousands of real conversations and decisions through recognised behavioural frameworks: who is hesitating, why, and what moves them. Read one at a time it looks incidental. Read as a pattern, it should be informing capital decisions, not just marketing ones.</p>
+      <p class="lede-block" style="margin-top:14px;">It matters most in a new market, where partners stand between you and your drivers and you don't yet know what the market expects, fears or means. We translate that context, not just the words.</p>
     </div>
   </div>
 </section>
@@ -287,45 +308,36 @@
     <h2>One view of the driver. Three kinds of decision.</h2>
     <div class="clusters">
       <div class="cluster-card">
-        <span class="count">01</span>
+        <span class="card-q">"Why aren't they buying — and what's about to go wrong?"</span>
         <h3>Manufacturers</h3>
         <p class="card-copy">What owners struggle with — software, features, regulation — before it becomes complaints, recalls or lost sales. What hesitant buyers need to hear in a market you're new to.</p>
+        <a class="card-link" href="mailto:hello@elevare-insights.com?subject=Sample%20brief%20-%20manufacturer">Request a sample brief →</a>
       </div>
       <div class="cluster-card">
-        <span class="count">02</span>
+        <span class="card-q">"Where should the next site go — and who is it for?"</span>
         <h3>Importers &amp; dealer networks</h3>
-        <p class="card-copy">Where buyers are with nowhere nearby to buy, and whether a new site would win new customers or take them from the next showroom. Researched local buyers your CRM can't see, and audits of the questions your sales team can't yet answer.</p>
+        <p class="card-copy">Where buyers are with nowhere nearby to buy, and whether a new site would win new customers or take them from the next showroom. Local buyers your CRM can't see.</p>
+        <a class="card-link" href="mailto:hello@elevare-insights.com?subject=Demand%20check%20-%20network">Request a demand check →</a>
       </div>
       <div class="cluster-card">
-        <span class="count">03</span>
+        <span class="card-q">"Is it working the way we assumed on the road?"</span>
         <h3>Regulation &amp; safety</h3>
-        <p class="card-copy">How drivers really use assisted-driving and safety systems, compared with what the regulations assume.</p>
+        <p class="card-copy">How drivers really use assisted-driving and safety systems, compared with what the regulations assume. Telemetry says a system is on. Drivers tell us when they've muted it, and why.</p>
+        <a class="card-link" href="mailto:hello@elevare-insights.com?subject=Research%20briefing%20-%20ADAS">Request the research briefing →</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="bridge" class="section-mist">
+<section id="research" class="section-mist">
   <div class="wrap two-col">
     <div>
-      <p class="eyebrow on-white">New markets</p>
-      <h2>Context, not just language.</h2>
+      <p class="eyebrow on-white">Research</p>
+      <h2>Switched on.<br>Turned off.</h2>
     </div>
     <div>
-      <p class="lede-block">A brand entering a new market has the least visibility of its drivers exactly when it needs it most. Partners stand between you and the customer, and you don't yet know what the market expects, fears or means. We translate that context — buyer psychology, regulatory expectations, reasons for hesitation — not just the words.</p>
-    </div>
-  </div>
-</section>
-
-<section id="proof">
-  <div class="wrap two-col">
-    <div>
-      <p class="eyebrow on-white">Proof</p>
-      <h2>Built in automotive. Proven at launch.</h2>
-    </div>
-    <div>
-      <p class="lede-block">Our first community reached an estimated 60–80% of a new brand's UK owners within months of its launch.</p>
-      <p class="lede-block" style="margin-top:14px; color:var(--muted); font-size:15px;">Members join by choice and consent to how their data is used. Everything we share is aggregated, so no individual is identifiable. UK GDPR compliant and ICO registered.</p>
+      <p class="lede-block">Our white paper on driver-assistance systems under GSR2 compares what regulators assume with what drivers actually do. Telemetry reports a system as active while the driver has muted it because it's intrusive or wrong. That gap sits between manufacturer, regulator and insurer — and nobody currently owns it.</p>
+      <p class="lede-block" style="margin-top:22px;"><a class="card-link" href="mailto:hello@elevare-insights.com?subject=White%20paper%20request%20-%20ADAS%20and%20GSR2">Request the white paper →</a></p>
     </div>
   </div>
 </section>
@@ -335,6 +347,7 @@
     <h2>See it for your market.</h2>
     <p>Tell us the market and the decision you're facing. We'll send a sample brief built from real owner data.</p>
     <a class="cta-email" href="mailto:hello@elevare-insights.com?subject=Sample%20brief%20request">hello@elevare-insights.com</a>
+    <p class="trust">Members join by choice and consent to how their data is used. Everything we share is aggregated — no individual is identifiable. UK GDPR compliant · ICO registered.</p>
   </div>
 </section>
 
